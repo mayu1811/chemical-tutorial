@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical & Petrochemical Sectors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+            background-color: #fff;
+        }
+        .department-box {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #333;
+            margin: 10px;
+        }
+        .button {
+            background-color: #0073e6;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chemical & Petrochemical Sectors</h1>
+        <h2>Supply Chain and Logistics</h2>
+    </header>
+
+    <section>
+        <div class="department-box">
+            <h2>Chemicals</h2>
+            <button class="button" onclick="toggleDropdown(1)">Click for Details</button>
+            <div class="dropdown-content" id="dropdown-1">
+                <button id="generate-csv-button1"><a href="#">Acids</a></button>
+                <button id="generate-csv-button1"><a href="#">Base</a></button>
+                <button id="generate-csv-button1"><a href="#">nutral</a></button>   
+            </div>
+            <div class="department-info" id="department-1">
+                Detailed information about chemical.
+            </div>
+        </div>
+
+        <div class="department-box">
+            <h2>Petrochemical</h2>
+            <button class="button" onclick="toggleDropdown(2)">Click for Details</button>
+            <div class="dropdown-content" id="dropdown-2">
+                <button id="generate-csv-button2"> <a href="#">Oils</a></button>
+                <button id="generate-csv-button1"> <a href="#">Gas</a></button>
+            </div>
+            <div class="department-info" id="department-2">
+                Detailed information about Petrochemical.
+            </div>
+        </div>
+
+        <div class="department-box">
+            <h2>Polycarban</h2>
+            <button class="button" onclick="toggleDropdown(3)">Click for Details</button>
+            <div class="dropdown-content" id="dropdown-3">
+                <button id="generate-csv-button1"><a href="#">Polythene</a></button>
+                <button id="generate-csv-button2"><a href="#">PVC</a></button>
+                <button id="generate-csv-button1"><a href="#">Plastic</a></button>   
+            </div>
+            <div class="department-info" id="department-3">
+                Detailed information about Polycarban.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p  style="text-align: center;">&copy; 2023 Department of chemical and petrochemical</p>
+    </footer>
+
+    <script>
+        function toggleDropdown(departmentNumber) {
+            var dropdown = document.getElementById('dropdown-' + departmentNumber);
+            if (dropdown.style.display === 'block' || dropdown.style.display === '') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        }
+    </script>
+    <script>
+        // Sample data for the CSV files
+        const data1 = [
+            ["Product Name", "Product No", "Import Duty/Export Duty", "Quantity"],
+            ["Product 1", "001", "5%", 100],
+            ["Product 2", "002", "3%", 75],
+            ["Product 3", "003", "7%", 120],
+        ];
+
+        const data2 = [
+            ["Product Name", "Product No", "Import Duty/Export Duty", "Quantity"],
+            ["Item A", "A001", "2%", 50],
+            ["Item B", "A002", "4%", 80],
+            ["Item C", "A003", "6%", 60],
+        ];
+
+        // Function to generate and trigger the download of the CSV file
+        function generateCSV(data, fileName) {
+            const csvContent = "data:text/csv;charset=utf-8," +
+                data.map(row => row.join(',')).join('\n');
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", fileName);
+            document.body.appendChild(link);
+
+            link.click(); // Trigger the download
+        }
+
+        // Attach the generateCSV function to each button click event
+        document.getElementById("generate-csv-button1").addEventListener("click", () => generateCSV(data1, "product_data1.csv"));
+        document.getElementById("generate-csv-button2").addEventListener("click", () => generateCSV(data2, "product_data2.csv"));
+    </script>
+</body>
+</html>

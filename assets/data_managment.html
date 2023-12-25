@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #f2f4f6;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .input-form input,
+        .input-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px; /* Adjust to position the logo vertically */
+            right: 20px; /* Adjust to position the logo horizontally */
+        }
+    </style>
+</head>
+<style>
+    body{
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thu…0px-Ministry_of_Chemicals_and_Fertilizers.svg.png");
+        text-align: center;
+    }
+    
+</style>
+<body>
+    <header>
+        <h1 style="font-family:Georgia, 'Times New Roman', Times, serif; color: #260f98;">Data Management System</h1>
+    </header>
+    <div class="container">
+        <img class="logo" src="https://www.bureaucratsindia.in/blogimage/78134_1658996879.png " alt="Your Logo" height="90px"
+        width="180px">
+        <div class="section">
+            <h2>Data Sheet Generation</h2>
+            <form action="generate_data_sheet.php" method="post">
+                <select name="selectedData" required>
+                    <option value="">Select Data</option>
+                    <option value="Data 1">Data 1</option>
+                    <option value="Data 2">Data 2</option>
+                    <option value="Data 3">Data 3</option>
+                    <!-- Add more data options as needed -->
+                </select>
+                <button class="btn"  id="generate-csv-button" type="submit">Generate Data Sheet</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Data Input System</h2>
+            <form action="input_data.php" method="post" class="input-form">
+                <select name="selectedData" required>
+                    <option value="">Select Data</option>
+                    <option value="Data 1">Data 1</option>
+                    <option value="Data 2">Data 2</option>
+                    <option value="Data 3">Data 3</option>
+                    <!-- Add more data options as needed -->
+                </select>
+                <input type="text" name="dataValue" placeholder="Data Value" required>
+                <button class="btn" type="submit">Add Data</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Data Updating</h2>
+            <form action="update_data.php" method="post" class="input-form">
+                <select name="dataToUpdate" required>
+                    <option value="">Select Data</option>
+                    <!-- List of available data for updating -->
+                </select>
+                <input type="text" name="updatedValue" placeholder="Updated Value" required>
+                <button class="btn" type="submit">Update Data</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Sample data for the CSV
+        const data = [
+            ["Product Name", "Product No", "Import Duty/Export Duty", "Quantity"],
+            ["Product 1", "001", "5%", 100],
+            ["Product 2", "002", "3%", 75],
+            ["Product 3", "003", "7%", 120],
+        ];
+
+        // Function to generate and trigger the download of the CSV file
+        function generateCSV() {
+            const csvContent = "data:text/csv;charset=utf-8," +
+                data.map(row => row.join(',')).join('\n');
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "product_data.csv");
+            document.body.appendChild(link);
+
+            link.click(); // Trigger the download
+        }
+
+        // Attach the generateCSV function to the button click event
+        document.getElementById("generate-csv-button").addEventListener("click", generateCSV);
+    </script>
+</body>
+</html>

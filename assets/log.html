@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e1c3c3; /* Gray background color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #FFFFFF;
+            max-width: 300px; /* Reduced the width of the container */
+            padding: 8dvh;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin: 0;
+            color: #3498db;
+        }
+
+        .login-container input, .login-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #322929;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            background-color: #3498db;
+            color: #FFF;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form action="login.php" method="post">
+            <select name="organizationName" required>
+                <option value="">Select Organization</option>
+                <option value="Organization 1">Hindustan Petroleum</option>
+                <option value="Organization 2">Mankind</option>
+                <option value="Organization 3">Serum Institute</option>
+                <option value="Organization 4">HIL (India) Limited and Hindustan Fluorocarbons Limited (HFL)</option>
+                <!-- Add more organizations as needed -->
+            </select>
+            <input type="text" name="organizationID" placeholder="Organization ID" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
